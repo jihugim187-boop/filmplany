@@ -1,0 +1,84 @@
+/* 디자인 토큰: 밝고 깔끔한 노트 느낌 (CLAUDE.md ■ 디자인) */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #333333;
+  --color-muted: #6b6b6b;
+  --color-line: #e6e6e6;
+  --color-accent: #2b4c7e;
+  --color-accent-weak: #e8eef6;
+  --color-note: #fff6c7;
+  --color-note-line: #f0e3a0;
+  --color-ok: #2e7d4f;
+  --color-fail: #c0392b;
+
+  --radius: 12px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --touch: 44px; /* 터치 최소 크기 */
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR',
+    'Malgun Gothic', sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; min-height: 100%; }
+body { min-height: 100dvh; }
+h1 { margin: 0 0 var(--space-2); font-size: 1.8rem; color: var(--color-accent); }
+p { margin: 0 0 var(--space-3); }
+
+.page-center {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: max(var(--space-4), env(safe-area-inset-top)) var(--space-3)
+    max(var(--space-4), env(safe-area-inset-bottom));
+}
+
+.note-card {
+  width: min(520px, 100%);
+  background: var(--color-note);
+  border: 1px solid var(--color-note-line);
+  border-radius: var(--radius);
+  padding: var(--space-5) var(--space-4);
+}
+
+.eyebrow { margin: 0 0 var(--space-1); font-size: 0.85rem; color: var(--color-accent); font-weight: 600; }
+.muted { color: var(--color-muted); }
+.small { font-size: 0.9rem; margin: 0; }
+
+.status-box {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  background: var(--color-bg);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+.dot { flex: none; width: 12px; height: 12px; border-radius: 50%; margin-top: 7px; background: var(--color-muted); }
+.dot-connected { background: var(--color-ok); }
+.dot-failed { background: var(--color-fail); }
+
+.btn {
+  min-height: var(--touch);
+  padding: 0 var(--space-4);
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.btn:disabled { opacity: 0.5; }
