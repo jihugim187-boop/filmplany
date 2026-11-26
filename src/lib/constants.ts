@@ -15,3 +15,11 @@ export const PREP_STATUS = ['필요', '준비중', '준비완료'] as const
 /** 씬/컷 표시 형식: S#3 C#2 */
 export const sceneLabel = (n: number) => `S#${n}`
 export const cutLabel = (sceneNo: number, cutNo: number) => `S#${sceneNo} C#${cutNo}`
+
+/** 프로필 색 선택지 (진한 색 위주: 흰 글씨가 잘 보이게) */
+export const PROFILE_COLORS = [
+  '#2B4C7E', '#3E7CB1', '#2E7D4F', '#7A9A3A', '#C08A1E', '#D2691E', '#C0392B', '#A23E6F', '#6C4BA6', '#555555',
+] as const
+
+/** 이 기기에서 고른 프로필 id를 저장하는 localStorage 키 */
+export const PROFILE_STORAGE_KEY = 'filmplany.profileId'
