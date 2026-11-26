@@ -40,6 +40,19 @@
 | 반응형 | 아이패드 가로·세로, 폰 모두. **터치 조작 기준** (터치 영역 최소 44px) |
 | 사진 | 업로드 전 브라우저에서 **긴 변 1600px, JPEG 품질 0.8**로 압축 후 Supabase Storage에 업로드 (무료 저장 1GB 절약) |
 | 배포 주소 | https://jihugim187-boop.github.io/filmplany/ |
+| 레포 공개 | 무료 계정의 GitHub Pages는 **공개 레포에서만** 동작한다. 레포는 public 유지 (Supabase 키는 Secrets에만 있음) |
+| Supabase 일시정지 | 무료 플랜은 한동안 안 쓰면 일시정지된다. 앱이 "연결 실패"를 띄우면 대시보드에서 Restore |
+
+### 라우트 (HashRouter)
+
+| 주소 | 화면 |
+|---|---|
+| `#/` | 프로젝트 목록 (프로필 미선택 시 어느 주소든 프로필 선택 화면) |
+| `#/profiles` | 프로필 선택·추가·관리 (상단 프로필 전환 버튼) |
+| `#/projects/new` | 새 프로젝트 (제목 + 설명 10개 항목) |
+| `#/projects/:id` | 프로젝트 홈 (`ProjectLayout`: 상단 바 + 로그라인 고정 바, 설명 요약, 기능 목록) |
+| `#/projects/:id/edit` | 프로젝트 설명 수정 |
+| `#/projects/:id/<기능>` | 이후 단계 기능은 `ProjectLayout`의 하위 라우트로 추가 (`useProject()`로 프로젝트를 받는다) |
 
 ### 폴더 구조
 
@@ -51,13 +64,14 @@ src/
   main.tsx                     진입점
   App.tsx                      HashRouter + 라우트
   lib/
-    supabase.ts                Supabase 클라이언트(단 하나), 연결 확인, MEDIA_BUCKET
-    constants.ts               역할·샷 크기·앵글·움직임 등 고정 선택지 (DB check 제약과 같은 값)
+    supabase.ts                Supabase 클라이언트(단 하나) db(), 연결 확인, MEDIA_BUCKET
+    constants.ts               역할·샷 크기·앵글·움직임·프로필 색 등 고정 선택지 (DB check 제약과 같은 값)
+    errors.ts                  Supabase 오류 → 한국어 문장
   pages/                       라우트 단위 화면
-  components/                  여러 화면에서 쓰는 UI 조각 (로그라인 바, 프로필 전환 버튼 등)
-  features/<기능>/             기능별 화면·훅·로직 (예: features/storyboard, features/prompt)
-  hooks/                       공통 훅 (현재 프로필, Realtime 구독 등)
-  types/                       DB 타입
+  components/                  여러 화면에서 쓰는 UI 조각 (TopBar=프로필 전환 버튼, LoglineBar, Sheet, Avatar 등)
+  features/<기능>/             기능별 화면·훅·로직 (예: features/profile, features/project, features/prompt)
+  hooks/                       공통 훅 (ProfileProvider·useProfile, useRealtimeRefetch)
+  types/db.ts                  DB 타입 (schema.sql과 1:1)
   styles/global.css            디자인 토큰 + 공통 스타일
 ```
 
@@ -275,7 +289,7 @@ src/
 | 단계 | 내용 | 상태 |
 |---|---|---|
 | 1 | 설계서, 뼈대, schema.sql 전체, 자동 배포, 준비 중 화면 + 연결 상태 | 완료 |
-| 2 | 프로필 선택 + 프로젝트 목록·설명 + 로그라인 바 + 프로필 전환 | |
+| 2 | 프로필 선택 + 프로젝트 목록·설명 + 로그라인 바 + 프로필 전환 | 완료 |
 | 3 | 씬/컷 관리 | |
 | 4 | 시나리오 공동 편집 표 + presence + 버전 | |
 | 5 | 콘티 (평면도, 구도, 태그) + 사진 압축 업로드 공통 함수 | |
