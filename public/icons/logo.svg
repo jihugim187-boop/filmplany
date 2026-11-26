@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- 필름플래니 로고: 남색 바탕 + 연노랑 포스트잇 + 클래퍼보드 -->
+  <rect width="512" height="512" fill="#2B4C7E"/>
+  <g transform="rotate(-4 256 270)">
+    <!-- 포스트잇 (오른쪽 아래 귀퉁이 접힘) -->
+    <path d="M120 176 H392 V352 L340 404 H120 Z" fill="#FFF6C7"/>
+    <path d="M392 352 L340 404 V352 Z" fill="#E9D98C"/>
+    <!-- 클래퍼보드 막대 -->
+    <g transform="rotate(-12 120 176)">
+      <rect x="120" y="118" width="272" height="50" rx="6" fill="#FFF6C7"/>
+      <path d="M150 118 h34 l-26 50 h-34 Z M222 118 h34 l-26 50 h-34 Z M294 118 h34 l-26 50 h-34 Z M366 118 h26 v14 l-19 36 h-34 Z" fill="#2B4C7E"/>
+    </g>
+    <!-- 노트 줄 = 씬 목록 -->
+    <rect x="152" y="224" width="40" height="18" rx="4" fill="#2B4C7E"/>
+    <rect x="204" y="224" width="156" height="18" rx="9" fill="#2B4C7E" opacity="0.35"/>
+    <rect x="152" y="268" width="40" height="18" rx="4" fill="#2B4C7E"/>
+    <rect x="204" y="268" width="120" height="18" rx="9" fill="#2B4C7E" opacity="0.35"/>
+    <rect x="152" y="312" width="40" height="18" rx="4" fill="#2B4C7E"/>
+    <rect x="204" y="312" width="96" height="18" rx="9" fill="#2B4C7E" opacity="0.35"/>
+  </g>
+</svg>

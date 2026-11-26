@@ -59,7 +59,10 @@
 ```
 .github/workflows/deploy.yml   빌드(PR) + 배포(main)
 supabase/schema.sql            전체 DB 설계 (한 번에 완성, 여러 번 실행해도 안전)
-public/                        정적 파일 (아이콘, 이후 PWA manifest)
+public/                        정적 파일
+  manifest.webmanifest         홈 화면 앱(PWA) 설정
+  icons/logo.svg               로고 원본 (여기만 바꾸면 됨)
+  icons/*.png                  logo.svg에서 만든 아이콘 (scripts/render-icons.cjs)
 src/
   main.tsx                     진입점
   App.tsx                      HashRouter + 라우트
@@ -193,6 +196,12 @@ src/
 - 밝고 깔끔한 **노트 느낌**.
 - **흰 배경**, **연노랑 포스트잇 카드**, 포인트 색은 **남색 `#2B4C7E`**. 글씨는 **진한 회색**.
 - **여백 넉넉하게, 장식 최소화.**
+- **로고**: 남색 바탕 + 연노랑 포스트잇 + 클래퍼보드 (`public/icons/logo.svg`).
+  다른 로고(예: 영상부 로고)로 바꿀 때는 `logo.svg`만 교체하고 `scripts/render-icons.cjs`로 PNG를 다시 만든다.
+  아이콘 PNG: apple-touch-icon 180, 192, 512, maskable 512(로고를 80% 안전 영역에), favicon 32.
+- **홈 화면 앱 (기능 18)**: `manifest.webmanifest`(display standalone, start_url `./`) + 애플 전용 meta 태그.
+  서비스 워커(오프라인 캐시)는 쓰지 않는다 — 배포 직후 옛 화면이 남는 문제를 피하고, 이 앱은 어차피 온라인 전용.
+  아이콘이나 manifest를 바꾸면 사용자는 홈 화면 아이콘을 지우고 다시 추가해야 반영된다.
 - 토큰 (`src/styles/global.css`):
 
 | 토큰 | 값 | 용도 |
@@ -290,6 +299,7 @@ src/
 |---|---|---|
 | 1 | 설계서, 뼈대, schema.sql 전체, 자동 배포, 준비 중 화면 + 연결 상태 | 완료 |
 | 2 | 프로필 선택 + 프로젝트 목록·설명 + 로그라인 바 + 프로필 전환 | 완료 |
+| 2-1 | 홈 화면 앱(PWA) + 로고·아이콘 (원래 13단계에서 앞당김) | 완료 |
 | 3 | 씬/컷 관리 | |
 | 4 | 시나리오 공동 편집 표 + presence + 버전 | |
 | 5 | 콘티 (평면도, 구도, 태그) + 사진 압축 업로드 공통 함수 | |
@@ -300,6 +310,6 @@ src/
 | 10 | 테이크 기록 + 연속성 메모 | |
 | 11 | 소품·의상 + 장소 헌팅 갤러리 | |
 | 12 | 피드백 + 진행 상황판 | |
-| 13 | PDF 내보내기 + PWA | |
+| 13 | PDF 내보내기 | |
 
 순서는 사용자와 상의해 바꿀 수 있다. 바꾸면 이 표부터 고친다.
